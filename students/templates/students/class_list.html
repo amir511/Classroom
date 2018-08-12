@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+
+{% block content %}
+
+<div class="container">
+<p></p>
+<div class="card">
+        <div class="card-body">
+          <h4 class="card-title">List of your classes</h4>
+          <ul class="list-group list-group-flush">
+              {% for class in classes %}
+              <a href="{% pageurl class %}">
+                  <li class="list-group-item">{{ class.class_name }}</li>
+              </a>
+              {% endfor %}
+          </ul>
+        </div>
+      </div>
+</div>
+
+{% endblock content %}

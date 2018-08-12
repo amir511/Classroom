@@ -6,13 +6,25 @@
 <div class="container">
     <p></p>
     <div class="jumbotron">
-        <h1 class="display-3">Welcome to ClassRoom!</h1>
+        <h1>Welcome to ClassRoom!</h1>
         <p class="lead">A simple web application for helping teachers track their students in the Classroom</p>
         <hr class="my-4">
         <p>Written using Wagtail CMS</p>
-        <p class="lead">
-          <a class="btn btn-primary btn-lg" href="{% url 'wagtailadmin_home' %}" role="button">Go to Admin Page</a>
-        </p>
+        <div class="row">
+
+          <div class="col-lg-2 col-md-0">
+          </div>
+          <div class="col-lg-3 col-md-12">
+            <a class="btn btn-primary btn-lg btn-block" href="{% url 'wagtailadmin_home' %}" role="button">Go to Admin Page</a>
+          </div>
+          <div class="col-lg-2 col-md-0"></div>
+          <div class="col-lg-3 col-md-12">
+            <a class="btn btn-primary btn-lg btn-block" href="{% url 'students:class_list' %}" role="button">Go to your classes</a>
+          </div>
+          <div class="col-lg-2 col-md-0">
+            </div>
+        </div>
+
       </div>
 </div>
 {% endblock %}
