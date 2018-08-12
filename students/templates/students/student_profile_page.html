@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% load wagtailcore_tags %}
+{% load wagtailcore_tags wagtailimages_tags %}
 
 {% block content %}
 <div class="container">
@@ -9,10 +9,19 @@
         <div class="card-body">
           <h4 class="card-title">{{ page.first_name }} {{page.last_name}}</h4>
           <h6 class="card-subtitle mb-2 text-muted">{{ page.get_parent.class_name }}</h6>
-          <b>First Name:</b>
-          <p class="card-text">{{ page.first_name }}</p>
-          <b>Last Name:</b>
-          <p class="card-text">{{ page.last_name }}</p>
+          <div class="row">
+            <div class="col-lg-3 col-md-6">
+              <b>First Name:</b>
+              <p class="card-text">{{ page.first_name }}</p>
+              <b>Last Name:</b>
+              <p class="card-text">{{ page.last_name }}</p>
+            </div>
+            {% if page.image %}
+            <div class="col">
+              {% image page.image fill-125x125 style="border-radius: 50%;" %}
+            </div>
+            {% endif %}
+          </div>
           <b>Birthday:</b>
           <p class="card-text">{{ page.birthday }}</p>
           <b>Mobile Number:</b>
