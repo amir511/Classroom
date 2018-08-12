@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags %}
+
+{% block content %}
+<div class="container">
+    <p></p>
+    <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">{{ page.first_name }} {{page.last_name}}</h4>
+          <h6 class="card-subtitle mb-2 text-muted">{{ page.get_parent.class_name }}</h6>
+          <b>First Name:</b>
+          <p class="card-text">{{ page.first_name }}</p>
+          <b>Last Name:</b>
+          <p class="card-text">{{ page.last_name }}</p>
+          <b>Birthday:</b>
+          <p class="card-text">{{ page.birthday }}</p>
+          <b>Mobile Number:</b>
+          <p class="card-text">{{ page.mobile_number }}</p>
+          <b>Email:</b>
+          <p class="card-text">{{ page.email }}</p>
+          <b>Comments:</b>
+          <p class="card-text">{{ page.comments|richtext }}</p>
+
+          <a href="{{ page.get_parent.url }}" class="card-link">Go Back to class</a>
+        </div>
+      </div>
+
+
+</div>
+
+
+
+
+{% endblock content %}

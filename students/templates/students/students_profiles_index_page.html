@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+{% block content %}
+<div class="container">
+    <p></p>
+    <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">{{ page.class_name }}</h4>
+          <h6 class="card-subtitle mb-2">{{ page.description|richtext }}</h6>
+          <b>Students List:</b>
+          <ul class="list-group list-group-flush">
+              {% for student in page.get_children %}
+              <a href="{% pageurl student %}">
+                  <li class="list-group-item">{{ student.specific.first_name }} {{ student.specific.last_name }}</li>
+              </a>
+              {% endfor %}
+          </ul>
+        </div>
+      </div>
+</div>
+{% endblock content %}
