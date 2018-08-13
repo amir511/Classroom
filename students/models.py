@@ -6,16 +6,30 @@ from wagtail.admin.edit_handlers import FieldPanel
 from wagtail.images.edit_handlers import ImageChooserPanel
 
 class ClassPage(Page):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.slug = self.slug if self.slug else 'slug_will_be_generated_automatically'
+    
     class_name = models.CharField(max_length=255)
     description = RichTextField(blank=True)
-
-    content_panels = Page.content_panels + [
+    
+    content_panels = [
         FieldPanel('class_name', classname="full"),
         FieldPanel('description', classname="full"),
     ]
-
+    
+    def save(self, *args, **kwargs):
+        self.title = self.class_name
+        self.slug = "-".join(self.class_name.lower().split())
+        super().save(*args, **kwargs)
 
 class StudentPage(Page):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.slug = self.slug if self.slug else 'slug_will_be_generated_automatically'
+
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
     birthday = models.DateField()
@@ -24,7 +38,7 @@ class StudentPage(Page):
     comments = RichTextField(blank=True)
     image = models.ForeignKey('wagtailimages.Image', on_delete=models.SET_NULL, null=True, default=None, related_name='+')
 
-    content_panels = Page.content_panels + [
+    content_panels = [
         FieldPanel('first_name'),
         FieldPanel('last_name'),
         FieldPanel('birthday'),
@@ -33,5 +47,10 @@ class StudentPage(Page):
         FieldPanel('comments'),
         ImageChooserPanel('image'),
     ]
+
+    def save(self, *args, **kwargs):
+        self.title = self.first_name + " " + self.last_name
+        self.slug = "-".join(self.title.lower().split())
+        super().save(*args, **kwargs)
 
 
