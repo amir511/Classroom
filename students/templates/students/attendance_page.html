@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block content %}
+
+<div class="container">
+    <p></p>
+    <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Attendance on: {{ page.date }}</h4>
+          <h6 class="card-subtitle mb-2 text-muted">Number of Students: {{ page.students.count }}</h6>
+          <ul class="list-group list-group-flush">
+            {% for student in page.students.all %}
+            <a href="{% pageurl student %}">
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6">
+                        {{ student.first_name }} {{student.last_name}}
+                        </div>
+                        {% if student.image %}
+                        <div class="col">
+                        {% image student.image fill-50x50 style="border-radius: 50%;" %}
+                        </div>            
+                        {% endif %}
+                    </div>
+                    </li>
+
+            </a>
+            {% endfor %}
+        </ul>
+        </div>
+      </div>
+
+</div>
+
+{% endblock content %}
+
