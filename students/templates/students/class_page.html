@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags %}
+{% load wagtailcore_tags wagtailimages_tags%}
 {% block content %}
 <div class="container">
     <p></p>
@@ -11,8 +11,20 @@
           <ul class="list-group list-group-flush">
               {% for student in page.get_children %}
               <a href="{% pageurl student %}">
-                  <li class="list-group-item">{{ student.specific.first_name }} {{ student.specific.last_name }}</li>
-              </a>
+                  <li class="list-group-item">
+                      <div class="row">
+                          <div class="col-lg-3 col-md-6">
+                              {{ student.specific.first_name }} {{ student.specific.last_name }}
+                            </div>
+                            {% if student.specific.image %}
+                            <div class="col">
+                                {% image student.specific.image fill-50x50 style="border-radius: 50%;" %}
+                            </div>
+                        </div>
+                    </li>
+                </a>
+
+                  {% endif %}
               {% endfor %}
           </ul>
         </div>
