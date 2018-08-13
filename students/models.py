@@ -1,9 +1,12 @@
 from django.db import models
 
+from modelcluster.fields import ParentalManyToManyField
+
 from wagtail.core.models import Page
 from wagtail.core.fields import RichTextField
 from wagtail.admin.edit_handlers import FieldPanel
 from wagtail.images.edit_handlers import ImageChooserPanel
+
 
 class ClassPage(Page):
 
@@ -53,4 +56,21 @@ class StudentPage(Page):
         self.slug = "-".join(self.title.lower().split())
         super().save(*args, **kwargs)
 
+class AttendancePage(Page):
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.slug = self.slug if self.slug else 'slug_will_be_generated_automatically'
 
+    date = models.DateField()
+    students = ParentalManyToManyField(StudentPage, related_name='attendances')
+
+    content_panels = [
+        FieldPanel('date'),
+        FieldPanel('students'),
+    ]
+
+    def save(self, *args, **kwargs):
+        self.title = 'Att:' + str(self.date)
+        self.slug = str(self.date)
+        super().save(*args, **kwargs)
