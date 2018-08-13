@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+
+{% block content %}
+
+<div class="container">
+<p></p>
+<div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Attendance List:</h4>
+          <ul class="list-group list-group-flush">
+              {% for attendance in attendances %}
+              <a href="{% pageurl attendance %}">
+                  <li class="list-group-item">{{ attendance.date }}</li>
+              </a>
+              {% endfor %}
+          </ul>
+        </div>
+      </div>
+</div>
+
+{% endblock content %}
