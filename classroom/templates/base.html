@@ -40,15 +40,25 @@
                 <li class="nav-item active">
                   <a class="nav-link" href="{% slugurl 'home' %}">Home <span class="sr-only">(current)</span></a>
                 </li>
+                {% if user.is_authenticated %}
+                
                 <li class="nav-item">
-                  <a class="nav-link" href="{% url 'wagtailadmin_home' %}">Admin</a>
+                    <a class="nav-link" href="{% url 'wagtailadmin_home' %}">Admin</a>
                 </li>
                 <li class="nav-item">
-                        <a class="nav-link" href="{% url 'students:class_list' %}">Your Classes</a>
+                    <a class="nav-link" href="{% url 'students:class_list' %}">Your Classes</a>
                 </li>
                 <li class="nav-item">
-                        <a class="nav-link" href="{% url 'students:attendance_list' %}">Attendance</a>
+                    <a class="nav-link" href="{% url 'students:attendance_list' %}">Attendance</a>
                 </li>
+                <li class="nav-item">
+                        <a class="nav-link" href="{% url 'wagtailadmin_logout' %}">log out</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                        <a class="nav-link" href="{% url 'wagtailadmin_login' %}">log in</a>
+                </li>
+                {% endif %}
                 <li class="nav-item">
                   <a class="nav-link" href="#">About</a>
                 </li>

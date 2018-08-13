@@ -12,6 +12,7 @@
         <p>Written using Wagtail CMS</p>
         <div class="row">
 
+          {% if user.is_authenticated %}
           <div class="col-lg-2 col-md-0">
           </div>
           <div class="col-lg-3 col-md-12">
@@ -22,8 +23,17 @@
             <a class="btn btn-primary btn-lg btn-block" href="{% url 'students:class_list' %}" role="button">Go to your classes</a>
           </div>
           <div class="col-lg-2 col-md-0">
-            </div>
+          </div>
         </div>
+        {% else %}
+          <div class="col-lg-4 col-md-0">
+          </div>
+          <div class="col-lg-4 col-md-12">
+              <a class="btn btn-primary btn-lg btn-block" href="{% url 'wagtailadmin_home' %}" role="button">Log In</a>
+          </div>
+          <div class="col-lg-4 col-md-0">
+          </div>
+        {% endif %}
 
       </div>
 </div>
