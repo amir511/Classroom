@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
     'modelcluster',
     'taggit',
+    'bootstrap4',
 
     'django.contrib.admin',
     'django.contrib.auth',

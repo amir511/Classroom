@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+
+{% block content %}
+
+<div class="container">
+    <p></p>
+    <div class="card">
+        <div class="p-5">
+
+            <h1>Thank you for contacting me!</h1>
+            <h2>I will get back to you shortly.</h2>
+            <h2>
+                <a href="{% slugurl 'about-us' %}">Back</a>
+            </h2>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
