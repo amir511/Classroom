@@ -63,9 +63,9 @@
                   <a class="nav-link" href="{% slugurl 'about-us' %}">About</a>
                 </li>
               </ul>
-              <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" placeholder="Search" type="text">
-                <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+              <form class="form-inline my-2 my-lg-0" action="{% url 'search' %}" method="GET">
+                <input class="form-control mr-sm-2" placeholder="Search" type="text" name="query">
+                <input class="btn btn-secondary my-2 my-sm-0" type="submit" value="Search" />
               </form>
             </div>
           </nav>

@@ -6,6 +6,7 @@ from wagtail.core.models import Page
 from wagtail.core.fields import RichTextField
 from wagtail.admin.edit_handlers import FieldPanel
 from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.search import index
 
 
 class ClassPage(Page):
@@ -22,6 +23,11 @@ class ClassPage(Page):
         FieldPanel('description', classname="full"),
     ]
     
+    search_fields = Page.search_fields + [
+        index.SearchField('class_name'),
+        index.SearchField('description'),
+    ]
+
     def save(self, *args, **kwargs):
         self.title = self.class_name
         self.slug = "-".join(self.class_name.lower().split())
@@ -51,6 +57,14 @@ class StudentPage(Page):
         ImageChooserPanel('image'),
     ]
 
+    search_fields = Page.search_fields + [
+        index.SearchField('first_name'),
+        index.SearchField('last_name'),
+        index.SearchField('mobile_number'),
+        index.SearchField('email'),
+        index.SearchField('comments'),
+    ]
+
     def save(self, *args, **kwargs):
         self.title = self.first_name + " " + self.last_name
         self.slug = "-".join(self.title.lower().split())
@@ -68,6 +82,11 @@ class AttendancePage(Page):
     content_panels = [
         FieldPanel('date'),
         FieldPanel('students'),
+    ]
+
+    search_fields = Page.search_fields + [
+        index.FilterField('date'),
+        index.SearchField('students'),
     ]
 
     def save(self, *args, **kwargs):
