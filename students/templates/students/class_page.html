@@ -10,6 +10,8 @@
           <b>Students List:</b>
           <ul class="list-group list-group-flush">
               {% for student in page.get_children %}
+              <!-- just making sure that this is a student page -->
+              {% if student.specific.first_name %} 
               <a href="{% pageurl student %}">
                   <li class="list-group-item">
                       <div class="row">
@@ -23,8 +25,8 @@
                         </div>
                     </li>
                 </a>
-
-                  {% endif %}
+                            {% endif %}
+                {% endif %}
               {% endfor %}
           </ul>
         </div>
